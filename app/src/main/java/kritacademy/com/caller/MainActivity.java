@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import org.apache.activemq.transport.stomp.StompConnection;
+
 import kritacademy.com.caller.actions.UserAction;
 import kritacademy.com.caller.entity.User;
 import retrofit2.Call;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String API_URL = "http://localhost:8080";
     private static Retrofit retrofit = null;
     private Button mCallButton;
-
+    private StompConnection stompConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,5 +49,13 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        stompConnection = new StompConnection();
+        try{
+            stompConnection.open("",8080);
+
+        }
+        catch (Exception e){
+
+        }
     }
 }
